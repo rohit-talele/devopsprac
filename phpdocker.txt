@@ -1,0 +1,49 @@
+Step 1: Create a new project directory
+mkdir php-docker-project
+Creates a folder named php-docker-project for your project.
+
+cd php-docker-project
+Navigates into the php-docker-project directory.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Step 2: Create a sample PHP file
+echo "<?php echo 'Hello from PHP Docker container!'; ?>" > index.php
+Creates a file index.php with simple PHP code that prints a message.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Step 3: Create a Dockerfile
+cat <<EOF > Dockerfile
+FROM php:8.2-apache
+COPY index.php /var/www/html/
+EXPOSE 80
+EOF
+
+or
+
+echo FROM php:8.2-apache COPY index.php /var/www/html/ EXPOSE 80 > Dockerfile
+{format the dockerfile correctly similar to that in cat command}
+This creates a Dockerfile with the following instructions:
+
+FROM php:8.2-apache: Uses the official PHP image with Apache.
+
+COPY index.php /var/www/html/: Copies your PHP file into the web server’s root directory.
+
+EXPOSE 80: Declares port 80 for HTTP traffic.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Step 4: Build the Docker image
+docker build -t rohittalele2005/php-project .
+Builds a Docker image in the current directory and tags it as rohitkumxr/php-project.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Step 5: Log in to Docker Hub
+docker login
+Logs in to your Docker Hub account to allow image pushing.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Step 6: Push the Docker image to Do Hub
+docker push rohittalele2005/php-project
+Uploads your tagged image to your Docker Hub repository.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Step 7:To run the container on any machine with Docker
+docker run -p 8081:80 rohittalele2005/php-project
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Step 8:Run localhost:8081
+
+
+

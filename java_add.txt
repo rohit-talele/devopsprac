@@ -1,0 +1,45 @@
+Step 1: Create a Folder Named adddjava
+mkdir adddjava
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Step 2: Navigate into the Folder
+cd adddjava
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Step 3: Create the Java File
+notepad AdditionOfTwoNumbers.java
+Opens Notepad to write and save the Java file. Paste the following code into it:
+
+public class AdditionOfTwoNumbers {
+    public static void main(String[] args) {
+        int num1 = 5;
+        int num2 = 7;
+        int sum = num1 + num2;
+        System.out.println("The sum of " + num1 + " and " + num2 + " is: " + sum);
+    }
+}
+
+Save and close Notepad.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Step 4: Open Jenkins and Create a New Freestyle Project
+Go to Jenkins homepage.
+
+Click “New Item”.
+
+Name your project (e.g., AdditionProject).
+
+Select Freestyle project and click OK.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Step 5: Use Custom Workspace
+Scroll to Advanced Project Options.
+
+Check ✅ Use custom workspace.
+
+Paste the full path of the adddjava folder. For example:
+C:\Users\YourUsername\adddjava
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Step 6: Add Build Step (Execute Windows Batch Command)
+Click Add build step → Execute Windows batch command.
+
+Paste the following commands:
+javac AdditionOfTwoNumbers.java
+java AdditionOfTwoNumbers
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

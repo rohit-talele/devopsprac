@@ -1,0 +1,40 @@
+Step 1: Create a New Jenkins Item
+Action: Open Jenkins dashboard → Click on “New Item”
+
+Name: Enter any job name (e.g., CI-Java-Addition)
+
+Type: Select Freestyle project
+
+Click: OK
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Step 2: Configure Source Code Management
+Go to: "Source Code Management" section
+
+Select: Git
+
+Repository URL:https://github.com/Shreyask1012/devops
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Step 3: Clear Default Branch
+Find: “Branches to build” → remove the default */master
+
+Leave it blank
+This removes specific branch restriction, allowing Jenkins to fetch the default branch from GitHub.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Step 4: Configure Build Triggers
+Go to: "Build Triggers"
+
+Check: “Build periodically”
+
+Enter this Schedule:
+H/2 * * * *
+This cron expression triggers the build every 2 minutes, demonstrating continuous integration.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Step 5: Add Build Step
+Go to: "Build" section → Click “Add build step” → Select Execute Windows batch command
+
+Enter the following code:
+javac AdditionOfTwoNumbers.java
+java AdditionOfTwoNumbers
+This compiles the Java file and runs it. It assumes AdditionOfTwoNumbers.java is in the GitHub repo’s root.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+

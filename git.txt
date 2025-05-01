@@ -1,0 +1,55 @@
+Step 1 :Creates a new folder named html-demo in your current directory.
+mkdir html-demo
+
+Step 2:Moves into the html-demo folder so you can work inside it.
+cd html-demo
+
+Step 3:Creates a file HTML Files and add content for a pages.
+echo '<html><body><h1>Home Page</h1></body></html>' >> index.html
+
+echo '<html><body><h1>About Page</h1></body></html>' >> about.html
+
+echo '<html><body><h1>Contact Page</h1></body></html>' >> contact.html
+
+Step 4:Initializes a Git repository in the current folder (html-demo). This lets Git track changes.
+git init
+
+Step 5:Sets your Git username globally (for all repositories on this system).
+git config --global user.name "rohit-rait"
+
+Step 6:Sets your Git email globally. This is used to label your commits.
+git config --global user.email "roh.tal.rt22@dypatil.edu"
+
+Step 7:Links your local repo to the remote GitHub repository so you can push/pull changes.
+git remote add origin https://github.com/rohit-rait/html-demo.git
+
+Step 8:Stages all the current files for commit. The dot (.) means "all files in this directory".
+git add .
+
+Step 9: Commits the staged files with a message describing the commit.
+git commit -m "Initial commit with 3 HTML files"
+
+Step 10:Renames the default branch from master to main (recommended by GitHub).
+git branch -M main
+
+Step 11:Pushes your code to GitHub on the main branch and sets upstream tracking (so future pushes/pulls can be done with just git push or git pull).
+git push -u origin main
+
+---------------------------------------------------------PULL COMMAND-----------------------------------------------
+cd ..
+
+mkdir pull
+
+cd pull
+
+Step 1:Clones the repository from GitHub into a subfolder named html-demo.
+git clone https://github.com/rohit-rait/html-demo.git
+
+Step 2:Navigates into the cloned html-demo folder.
+cd html-demo
+
+Step 3:Pulls the latest changes (if any) from the main branch of the remote GitHub repository.
+git pull origin main
+
+
+

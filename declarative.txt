@@ -1,0 +1,104 @@
+STEP 1: Create HTML Files
+mkdir my-html-site
+cd my-html-site
+
+Then create the 3 HTML files:
+echo "<h1>Welcome to Home Page</h1>" > index.html
+echo "<h1>About Us</h1>" > about.html
+echo "<h1>Contact Us</h1>" > contact.html
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+STEP 2: Upload Files to GitHub
+Create a new repository on GitHub (e.g., html-deploy-demo) and add all html files to the repo
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+STEP 3: Install Required Jenkins Plugins
+In Jenkins:
+
+Go to Dashboard > Manage Jenkins > Plugins > Available/Installed
+
+Make sure these plugins are installed:
+
+✅ Git Plugin – Clones repositories
+
+✅ Pipeline Plugin – Enables pipeline jobs
+
+✅ SSH Plugin – Optional: used for remote SSH execution
+
+✅ HTML Publisher Plugin – For publishing HTML reports (optional)
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+STEP 4: Set Up Jenkins Pipeline Job
+Go to Jenkins Dashboard
+
+Click "New Item"
+
+Enter name like HTML-CI-CD
+
+Select "Pipeline" → Click OK
+
+Scroll to the Pipeline section
+
+Set Definition: Pipeline script
+
+Paste this script:
+pipeline {
+    agent any
+
+    environment {
+        TARGET_DIR = 'C:\\xampp\\htdocs\\exp5devOps'
+    }
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/DevopsLabRait/devops4xampp.git'
+            }
+        }
+
+        stage('Clean Target Directory') {
+            steps {
+                echo "Cleaning the target directory: ${env.TARGET_DIR}"
+                bat "if exist ${env.TARGET_DIR} del /Q ${env.TARGET_DIR}\\*.*"
+            }
+        }
+
+        stage('Deploy to XAMPP') {
+            steps {
+                echo "Creating deployment directory: ${env.TARGET_DIR}"
+                bat "if not exist ${env.TARGET_DIR} mkdir ${env.TARGET_DIR}"
+
+                echo "Copying HTML files to ${env.TARGET_DIR}"
+                bat "xcopy /Y /Q *.html ${env.TARGET_DIR}\\"
+            }
+        }
+
+        stage('Deployment Complete') {
+            steps {
+                echo "Deployment complete! Visit: http://localhost/exp5devOps"
+            }
+        }
+    }
+}
+####################Replace the repo URL with your actual GitHub repo.####################
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+STEP 5: Prepare XAMPP Environment
+Make sure XAMPP is installed at C:\xampp
+
+Start Apache from XAMPP Control Panel
+
+Ensure folder: C:\xampp\htdocs\html-website is empty or ready for deployment
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+STEP 6: Run the Jenkins Job
+Click Build Now on the HTML-CI-CD pipeline job
+
+Wait for the stages:
+
+✅ Clone repository
+
+✅ Create folder
+
+✅ Copy files
+
+✅ Deployment complete
+
+Open browser: http://localhost/html-website/index.html
+

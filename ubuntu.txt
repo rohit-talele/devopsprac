@@ -1,0 +1,32 @@
+Step 1: Pull the official Ubuntu image
+docker pull ubuntu
+This command downloads the latest official Ubuntu image from Docker Hub to your local machine. Docker images are like templates used to create containers. You're starting with a clean Ubuntu environment.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Step 2: Run a container from the image and open an interactive shell
+docker run -it ubuntu
+This command starts a new container using the Ubuntu image and opens an interactive terminal (-it = interactive + terminal). You'll be dropped into the Ubuntu shell inside the container.
+
+Once inside the container, run:
+echo "Hello from Docker container!" > /hello.txt
+
+exit
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Step 3: Get the container ID of the stopped container
+docker ps -a
+This command lists all containers, including those that are stopped (-a = all). Look for the container you just used—it should be marked as "Exited". Note down the container ID.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Step 4: Commit the changes to create a new image
+docker commit <container_id> rohittalele2005/ubuntu-with-hello
+This command saves the changes made in the container (like the /hello.txt file) as a new Docker image. Replace <container_id> with the actual container ID from the previous step.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Step 5: Log in to Docker Hub
+docker login
+This logs you into your Docker Hub account from the terminal. You’ll need to enter your Docker Hub username and password. This step is required before you can push any images to your repository.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Step 6: Push the image to Docker Hub
+docker push rohittalele2005/ubuntu-with-hello
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Step 7:
+https://hub.docker.com/r/rohittalele2005/ubuntu-with-hello
+This uploads your newly created image to your Docker Hub repository. After the push is complete, the image will be publicly available (or private, depending on your settings) at:
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
